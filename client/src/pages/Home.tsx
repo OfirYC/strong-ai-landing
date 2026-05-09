@@ -1,7 +1,6 @@
 /*
- * Strong AI — Home Page
- * Design: Dark Athletic Premium — Obsidian & Ember
- * Assembles all landing page sections in order
+ * Strong AI — Landing Page
+ * Light theme with blue accents, clean and modern
  */
 
 import Navbar from "@/components/Navbar";
@@ -17,18 +16,19 @@ import { CTASection, Footer } from "@/components/CTASection";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#111118] text-white overflow-x-hidden">
+    <div className="min-h-screen flex flex-col bg-white">
       <Navbar />
-      <HeroSection />
-      <StatsSection />
-      <div className="separator-glow mx-auto max-w-5xl" />
-      <ComparisonSection />
-      <TrackerSection />
-      <AICoachSection />
-      <ProfileSection />
-      <HowItWorksSection />
-      <TechSection />
-      <CTASection />
+      <main className="flex-1">
+        <HeroSection />
+        <StatsSection />
+        <ComparisonSection />
+        <TrackerSection />
+        <AICoachSection />
+        <ProfileSection />
+        <HowItWorksSection />
+        <TechSection />
+        <CTASection />
+      </main>
       <Footer />
     </div>
   );

@@ -1,52 +1,48 @@
 /*
  * Strong AI — AI Coach Section
- * Design: Electric blue accents for AI/intelligence elements
- * Animated chat demo showing typewriter streaming responses
- * Background: AI neural network image with blue glow
+ * Light theme with blue accents
  */
 
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Brain, MessageSquare, Database, Zap, ShieldCheck, RefreshCw } from "lucide-react";
 
-const AI_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663643511140/mYfssEJUacXwGC44k6oMNk/ai-coach-bg-cuRTjTxSfxYnBD5S5ekrZ8.webp";
-
 const capabilities = [
   {
     icon: Database,
     title: "Grounded in your data",
     description: "Before responding, the AI queries your actual workout history, PRs, schedule, and profile. It won't hallucinate your squat max — it looked it up.",
-    color: "#4F8EF7",
+    color: "#0066FF",
   },
   {
     icon: Brain,
     title: "Full context, always",
     description: "Your training background, current goals, injuries, and experience level are injected into every conversation automatically.",
-    color: "#4F8EF7",
+    color: "#0066FF",
   },
   {
     icon: Zap,
     title: "Streaming responses",
     description: "Responses stream in real time, token by token, so it feels like a conversation rather than waiting for a page to load.",
-    color: "#7BB3FF",
+    color: "#0052CC",
   },
   {
     icon: RefreshCw,
     title: "Up to 6 tool-calling rounds",
     description: "The AI runs a tool-calling loop — exercise lookup, history aggregation, PR queries, schedule inspection — before crafting its final response.",
-    color: "#7BB3FF",
+    color: "#0052CC",
   },
   {
     icon: MessageSquare,
     title: "Saved conversations",
     description: "Conversations are saved, named automatically, and always there to refer back to. Your coaching history, preserved.",
-    color: "#4F8EF7",
+    color: "#0066FF",
   },
   {
     icon: ShieldCheck,
     title: "Adapts as you grow",
     description: "Update your profile any time — new goals, recovered injuries, changed training phase — and the coach adapts immediately.",
-    color: "#7BB3FF",
+    color: "#0052CC",
   },
 ];
 
@@ -70,7 +66,7 @@ const chatExamples = [
 
 function ToolCallBadge({ tool }: { tool: string }) {
   return (
-    <span className="inline-flex items-center gap-1 text-[10px] font-mono text-[#4F8EF7]/70 bg-[#4F8EF7]/8 border border-[#4F8EF7]/15 px-2 py-0.5 rounded">
+    <span className="inline-flex items-center gap-1 text-[10px] font-mono text-blue-600 bg-blue-100 border border-blue-200 px-2 py-0.5 rounded">
       <Database className="w-2.5 h-2.5" />
       {tool}()
     </span>
@@ -88,12 +84,10 @@ function ChatDemo() {
     setShowTools(false);
     setIsTyping(true);
 
-    // Show tool calls first
     const toolDelay = setTimeout(() => {
       setShowTools(true);
     }, 300);
 
-    // Then start typing answer
     const typeDelay = setTimeout(() => {
       const answer = chatExamples[activeIdx].answer;
       let i = 0;
@@ -116,18 +110,16 @@ function ChatDemo() {
   }, [activeIdx]);
 
   return (
-    <div className="glass-card rounded-2xl overflow-hidden shadow-2xl shadow-black/50 border border-[#4F8EF7]/15 w-full">
+    <div className="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-200 w-full">
       {/* Header */}
-      <div className="px-5 py-4 border-b border-white/[0.06] flex items-center gap-3 bg-[#1A1A24]/60">
-        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#4F8EF7] to-[#2B5CE6] flex items-center justify-center shadow-lg shadow-blue-900/40">
+      <div className="px-5 py-4 border-b border-gray-200 flex items-center gap-3 bg-gray-50">
+        <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center shadow-md">
           <Brain className="w-4 h-4 text-white" />
         </div>
         <div>
-          <div className="text-sm font-bold text-white" style={{ fontFamily: "'Syne', sans-serif" }}>
-            AI Coach
-          </div>
-          <div className="text-xs text-[#4F8EF7] flex items-center gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#4F8EF7] animate-pulse" />
+          <div className="text-sm font-bold text-black">AI Coach</div>
+          <div className="text-xs text-blue-600 flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse" />
             Online · Accessing your data
           </div>
         </div>
@@ -141,8 +133,8 @@ function ChatDemo() {
             onClick={() => setActiveIdx(i)}
             className={`text-xs px-3 py-1.5 rounded-full whitespace-nowrap transition-all duration-200 font-medium ${
               activeIdx === i
-                ? "bg-[#4F8EF7]/20 text-[#7BB3FF] border border-[#4F8EF7]/30"
-                : "text-white/40 hover:text-white/70 hover:bg-white/5"
+                ? "bg-blue-100 text-blue-700 border border-blue-200"
+                : "text-gray-500 hover:text-gray-700 hover:bg-gray-100"
             }`}
           >
             Example {i + 1}
@@ -154,7 +146,7 @@ function ChatDemo() {
       <div className="px-5 py-4 space-y-3 min-h-[240px]">
         {/* User message */}
         <div className="flex justify-end">
-          <div className="bg-[#FF6B35]/12 border border-[#FF6B35]/18 text-white/90 text-sm px-4 py-3 rounded-2xl rounded-tr-sm max-w-[90%]">
+          <div className="bg-blue-100 border border-blue-200 text-gray-800 text-sm px-4 py-3 rounded-2xl rounded-tr-sm max-w-[90%]">
             {chatExamples[activeIdx].question}
           </div>
         </div>
@@ -179,16 +171,16 @@ function ChatDemo() {
             animate={{ opacity: 1 }}
             className="flex gap-3"
           >
-            <div className="w-7 h-7 rounded-full bg-[#4F8EF7]/20 border border-[#4F8EF7]/30 flex items-center justify-center flex-shrink-0 mt-0.5">
-              <Brain className="w-3.5 h-3.5 text-[#7BB3FF]" />
+            <div className="w-7 h-7 rounded-full bg-blue-100 border border-blue-200 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <Brain className="w-3.5 h-3.5 text-blue-600" />
             </div>
-            <div className="bg-white/[0.04] border border-white/[0.06] text-white/80 text-sm px-4 py-3 rounded-2xl rounded-tl-sm max-w-[90%] leading-relaxed">
+            <div className="bg-gray-50 border border-gray-200 text-gray-800 text-sm px-4 py-3 rounded-2xl rounded-tl-sm max-w-[90%] leading-relaxed">
               {displayedAnswer}
               {isTyping && (
                 <span className="inline-flex gap-0.5 ml-1 align-middle">
-                  <span className="w-1 h-1 rounded-full bg-[#4F8EF7] animate-bounce" style={{ animationDelay: "0ms" }} />
-                  <span className="w-1 h-1 rounded-full bg-[#4F8EF7] animate-bounce" style={{ animationDelay: "150ms" }} />
-                  <span className="w-1 h-1 rounded-full bg-[#4F8EF7] animate-bounce" style={{ animationDelay: "300ms" }} />
+                  <span className="w-1 h-1 rounded-full bg-blue-600 animate-bounce" style={{ animationDelay: "0ms" }} />
+                  <span className="w-1 h-1 rounded-full bg-blue-600 animate-bounce" style={{ animationDelay: "150ms" }} />
+                  <span className="w-1 h-1 rounded-full bg-blue-600 animate-bounce" style={{ animationDelay: "300ms" }} />
                 </span>
               )}
             </div>
@@ -198,10 +190,10 @@ function ChatDemo() {
 
       {/* Input bar */}
       <div className="px-5 pb-4">
-        <div className="flex items-center gap-2 bg-white/[0.04] border border-white/[0.08] rounded-xl px-4 py-3">
-          <span className="text-sm text-white/25 flex-1">Ask about your training...</span>
-          <div className="w-6 h-6 rounded-lg bg-[#4F8EF7]/20 flex items-center justify-center">
-            <Zap className="w-3 h-3 text-[#7BB3FF]" />
+        <div className="flex items-center gap-2 bg-gray-100 border border-gray-200 rounded-xl px-4 py-3">
+          <span className="text-sm text-gray-500 flex-1">Ask about your training...</span>
+          <div className="w-6 h-6 rounded-lg bg-blue-100 flex items-center justify-center">
+            <Zap className="w-3 h-3 text-blue-600" />
           </div>
         </div>
       </div>
@@ -211,18 +203,8 @@ function ChatDemo() {
 
 export default function AICoachSection() {
   return (
-    <section id="ai-coach" className="relative py-24 lg:py-32 overflow-hidden">
-      {/* Background */}
-      <div
-        className="absolute inset-0 bg-cover bg-center opacity-20"
-        style={{ backgroundImage: `url(${AI_BG})` }}
-      />
-      <div className="absolute inset-0 bg-[#111118]/82" />
-
-      {/* Electric glow */}
-      <div className="absolute top-1/2 left-0 w-[700px] h-[700px] rounded-full bg-[#4F8EF7]/8 blur-[180px] pointer-events-none -translate-y-1/2" />
-
-      <div className="container relative z-10">
+    <section id="ai-coach" className="relative py-24 lg:py-32 overflow-hidden bg-gray-50">
+      <div className="container">
         {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -231,23 +213,20 @@ export default function AICoachSection() {
           transition={{ duration: 0.6 }}
           className="mb-16 lg:mb-20"
         >
-          <span className="text-xs font-semibold tracking-widest uppercase text-[#4F8EF7] mb-3 block">
+          <span className="text-xs font-semibold tracking-widest uppercase text-blue-600 mb-3 block">
             The AI Coach
           </span>
-          <h2
-            className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight max-w-2xl"
-            style={{ fontFamily: "'Syne', sans-serif" }}
-          >
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-black leading-tight max-w-2xl">
             A coach with{" "}
-            <span className="text-electric-gradient">full context</span>{" "}
+            <span className="text-blue-gradient">full context</span>{" "}
             on your training.
           </h2>
-          <p className="mt-5 text-lg text-white/55 max-w-xl leading-relaxed">
+          <p className="mt-5 text-lg text-gray-600 max-w-xl leading-relaxed">
             Not a generic chatbot. Before it responds to anything, it builds a complete picture of you — your recent training history, personal records, scheduled plan, goals, and any injuries you've mentioned.
           </p>
         </motion.div>
 
-        {/* Content grid — reversed from tracker section */}
+        {/* Content grid */}
         <div className="grid lg:grid-cols-[480px_1fr] gap-12 lg:gap-16 items-start">
           {/* Left: Chat demo */}
           <motion.div
@@ -268,21 +247,18 @@ export default function AICoachSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.07, ease: "easeOut" }}
-                className="glass-card rounded-xl p-5 hover:border-[#4F8EF7]/20 transition-all duration-300"
+                className="bg-white rounded-xl p-5 hover:border-blue-300 transition-all duration-300 border border-gray-200"
               >
                 <div
                   className="w-9 h-9 rounded-lg flex items-center justify-center mb-3"
-                  style={{ background: `${cap.color}18` }}
+                  style={{ background: `${cap.color}15` }}
                 >
                   <cap.icon className="w-[18px] h-[18px]" style={{ color: cap.color }} />
                 </div>
-                <h3
-                  className="text-sm font-bold text-white mb-1.5"
-                  style={{ fontFamily: "'Syne', sans-serif" }}
-                >
+                <h3 className="text-sm font-bold text-black mb-1.5">
                   {cap.title}
                 </h3>
-                <p className="text-xs text-white/50 leading-relaxed">{cap.description}</p>
+                <p className="text-xs text-gray-600 leading-relaxed">{cap.description}</p>
               </motion.div>
             ))}
           </div>

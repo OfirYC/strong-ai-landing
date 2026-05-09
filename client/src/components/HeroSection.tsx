@@ -1,8 +1,6 @@
 /*
  * Strong AI — Hero Section
- * Design: Full-viewport hero, dark gym image, large left-aligned headline
- * Ember orange CTA, electric blue secondary badge
- * Text: WHITE on dark background (Low-Key image)
+ * Light theme with blue accents, clean and modern
  */
 
 import { motion } from "framer-motion";
@@ -25,20 +23,15 @@ const itemVariants = {
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background image */}
+    <section className="relative min-h-screen flex items-center overflow-hidden pt-16 bg-white">
+      {/* Background image with light overlay */}
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-10"
         style={{ backgroundImage: `url(${HERO_BG})` }}
       />
-      {/* Gradient overlays */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#111118]/95 via-[#111118]/75 to-[#111118]/20" />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#111118] via-transparent to-[#111118]/50" />
+      <div className="absolute inset-0 bg-gradient-to-b from-blue-50/50 via-white to-white" />
 
-      {/* Ember glow blob */}
-      <div className="absolute top-1/3 left-1/4 w-96 h-96 rounded-full bg-[#FF6B35]/8 blur-[120px] pointer-events-none" />
-
-      <div className="container relative z-10 pt-24 pb-20">
+      <div className="container relative z-10 py-20">
         <div className="max-w-3xl">
           <motion.div
             variants={containerVariants}
@@ -47,7 +40,7 @@ export default function HeroSection() {
           >
             {/* Badge */}
             <motion.div variants={itemVariants} className="mb-6">
-              <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide uppercase bg-[#4F8EF7]/15 text-[#7BB3FF] border border-[#4F8EF7]/25">
+              <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide uppercase bg-blue-100 text-blue-700 border border-blue-200">
                 <Sparkles className="w-3 h-3" />
                 AI-Powered Training Partner
               </span>
@@ -56,18 +49,17 @@ export default function HeroSection() {
             {/* Headline */}
             <motion.h1
               variants={itemVariants}
-              className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-extrabold leading-[0.95] tracking-tight text-white mb-6"
-              style={{ fontFamily: "'Syne', sans-serif" }}
+              className="text-5xl sm:text-6xl lg:text-7xl font-black leading-[0.95] tracking-tight text-black mb-6"
             >
               Train smarter.
               <br />
-              <span className="text-ember-gradient">Not just harder.</span>
+              <span className="text-blue-gradient">Not just harder.</span>
             </motion.h1>
 
             {/* Subheadline */}
             <motion.p
               variants={itemVariants}
-              className="text-lg sm:text-xl text-white/60 max-w-xl leading-relaxed mb-10 font-light"
+              className="text-lg sm:text-xl text-gray-600 max-w-xl leading-relaxed mb-10 font-medium"
             >
               Most workout apps are glorified spreadsheets. Strong AI combines a fast, frictionless tracker with an AI coach that has full context on your training — your history, your PRs, your injuries, your goals.
             </motion.p>
@@ -76,7 +68,7 @@ export default function HeroSection() {
             <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4">
               <Button
                 size="lg"
-                className="bg-[#FF6B35] hover:bg-[#e85c28] text-white font-semibold text-base px-8 h-14 shadow-xl shadow-orange-900/40 hover:shadow-orange-900/60 transition-all duration-200 group"
+                className="bg-blue-600 hover:bg-blue-700 text-white font-semibold text-base px-8 h-14 shadow-lg hover:shadow-xl transition-all duration-200 group"
               >
                 Get Early Access
                 <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -84,7 +76,7 @@ export default function HeroSection() {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-white/20 text-white hover:bg-white/8 bg-transparent text-base px-8 h-14 backdrop-blur-sm"
+                className="border-gray-300 text-black hover:bg-gray-50 text-base px-8 h-14"
                 onClick={() => document.getElementById("tracker")?.scrollIntoView({ behavior: "smooth" })}
               >
                 See How It Works
@@ -94,7 +86,7 @@ export default function HeroSection() {
             {/* Stats row */}
             <motion.div
               variants={itemVariants}
-              className="flex flex-wrap gap-8 mt-14 pt-10 border-t border-white/[0.08]"
+              className="flex flex-wrap gap-8 mt-14 pt-10 border-t border-gray-200"
             >
               {[
                 { value: "13", label: "Exercise Types" },
@@ -103,13 +95,10 @@ export default function HeroSection() {
                 { value: "iOS · Android · Web", label: "Platforms" },
               ].map((stat) => (
                 <div key={stat.label}>
-                  <div
-                    className="text-xl font-bold text-white"
-                    style={{ fontFamily: "'Syne', sans-serif" }}
-                  >
+                  <div className="text-2xl font-bold text-black">
                     {stat.value}
                   </div>
-                  <div className="text-xs text-white/40 mt-0.5 tracking-wide">{stat.label}</div>
+                  <div className="text-xs text-gray-500 mt-0.5 tracking-wide font-medium">{stat.label}</div>
                 </div>
               ))}
             </motion.div>
@@ -119,7 +108,7 @@ export default function HeroSection() {
 
       {/* Scroll indicator */}
       <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-white/30"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-gray-400"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 0.6 }}
@@ -127,9 +116,6 @@ export default function HeroSection() {
         <span className="text-xs tracking-widest uppercase font-medium">Scroll</span>
         <ChevronDown className="w-4 h-4 animate-bounce" />
       </motion.div>
-
-      {/* Bottom fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#111118] to-transparent pointer-events-none" />
     </section>
   );
 }

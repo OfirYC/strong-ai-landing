@@ -1,7 +1,6 @@
 /*
  * Strong AI — Comparison Section
- * Design: Side-by-side comparison table, ember/green for Strong AI, muted for others
- * Clean dark surface, minimal and impactful
+ * Light theme with blue accents, clean table design
  */
 
 import { motion } from "framer-motion";
@@ -26,32 +25,30 @@ function FeatureIcon({ value, isStrongAI }: { value: FeatureValue; isStrongAI?: 
   if (value === true) {
     return (
       <div className={`w-6 h-6 rounded-full flex items-center justify-center ${
-        isStrongAI ? "bg-[#FF6B35]/20" : "bg-white/8"
+        isStrongAI ? "bg-blue-100" : "bg-gray-100"
       }`}>
-        <Check className={`w-3.5 h-3.5 ${isStrongAI ? "text-[#FF6B35]" : "text-white/50"}`} />
+        <Check className={`w-3.5 h-3.5 ${isStrongAI ? "text-blue-600" : "text-gray-400"}`} />
       </div>
     );
   }
   if (value === "partial") {
     return (
-      <div className="w-6 h-6 rounded-full flex items-center justify-center bg-white/5">
-        <Minus className="w-3.5 h-3.5 text-white/30" />
+      <div className="w-6 h-6 rounded-full flex items-center justify-center bg-gray-100">
+        <Minus className="w-3.5 h-3.5 text-gray-400" />
       </div>
     );
   }
   return (
-    <div className="w-6 h-6 rounded-full flex items-center justify-center bg-white/5">
-      <X className="w-3.5 h-3.5 text-white/20" />
+    <div className="w-6 h-6 rounded-full flex items-center justify-center bg-gray-50">
+      <X className="w-3.5 h-3.5 text-gray-300" />
     </div>
   );
 }
 
 export default function ComparisonSection() {
   return (
-    <section className="relative py-20 lg:py-28 overflow-hidden">
-      <div className="absolute inset-0 bg-[#0A0A10]" />
-
-      <div className="container relative z-10">
+    <section className="relative py-20 lg:py-28 bg-gray-50">
+      <div className="container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -59,15 +56,12 @@ export default function ComparisonSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <span className="text-xs font-semibold tracking-widest uppercase text-white/40 mb-3 block">
+          <span className="text-xs font-semibold tracking-widest uppercase text-gray-500 mb-3 block">
             The Difference
           </span>
-          <h2
-            className="text-4xl sm:text-5xl font-extrabold text-white leading-tight"
-            style={{ fontFamily: "'Syne', sans-serif" }}
-          >
+          <h2 className="text-4xl sm:text-5xl font-bold text-black leading-tight">
             Not just another{" "}
-            <span className="text-ember-gradient">workout tracker.</span>
+            <span className="text-blue-gradient">workout tracker.</span>
           </h2>
         </motion.div>
 
@@ -80,13 +74,13 @@ export default function ComparisonSection() {
         >
           {/* Table header */}
           <div className="grid grid-cols-[1fr_100px_140px] gap-4 px-5 py-3 mb-2">
-            <div className="text-xs font-semibold text-white/30 uppercase tracking-wide">Feature</div>
-            <div className="text-xs font-semibold text-white/30 uppercase tracking-wide text-center">Others</div>
-            <div className="text-xs font-semibold text-[#FF6B35] uppercase tracking-wide text-center">Strong AI</div>
+            <div className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Feature</div>
+            <div className="text-xs font-semibold text-gray-500 uppercase tracking-wide text-center">Others</div>
+            <div className="text-xs font-semibold text-blue-600 uppercase tracking-wide text-center">Strong AI</div>
           </div>
 
           {/* Table rows */}
-          <div className="glass-card rounded-2xl overflow-hidden divide-y divide-white/[0.04]">
+          <div className="bg-white rounded-2xl overflow-hidden divide-y divide-gray-200 border border-gray-200">
             {features.map((row, i) => (
               <motion.div
                 key={row.feature}
@@ -94,9 +88,9 @@ export default function ComparisonSection() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.04 }}
-                className="grid grid-cols-[1fr_100px_140px] gap-4 px-5 py-3.5 items-center hover:bg-white/[0.02] transition-colors"
+                className="grid grid-cols-[1fr_100px_140px] gap-4 px-5 py-3.5 items-center hover:bg-gray-50 transition-colors"
               >
-                <span className="text-sm text-white/70">{row.feature}</span>
+                <span className="text-sm text-gray-700">{row.feature}</span>
                 <div className="flex justify-center">
                   <FeatureIcon value={row.others as FeatureValue} />
                 </div>

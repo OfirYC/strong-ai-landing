@@ -1,13 +1,13 @@
 /*
- * Strong AI — Stats & Social Proof Section
- * Design: Dark surface cards, ember/electric accents, animated numbers
- * Horizontal divider with subtle glow
+ * Strong AI — Stats & Testimonials Section
+ * Light theme with blue accents
  */
 
-import { motion, useInView } from "framer-motion";
-import { useRef, useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { useInView } from "framer-motion";
 
-function AnimatedNumber({ target, suffix = "" }: { target: number; suffix?: string }) {
+function AnimatedNumber({ target }: { target: number }) {
   const [count, setCount] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true });
@@ -33,70 +33,65 @@ function AnimatedNumber({ target, suffix = "" }: { target: number; suffix?: stri
   return (
     <span ref={ref}>
       {count.toLocaleString()}
-      {suffix}
     </span>
   );
 }
 
-const stats = [
-  { value: 13, suffix: "", label: "Exercise Types", description: "Barbell to mobility, every movement covered" },
-  { value: 6, suffix: "×", label: "AI Tool Rounds", description: "Rounds of tool-calling before each response" },
-  { value: 100, suffix: "%", label: "Data-Grounded", description: "Every AI answer backed by your real data" },
-  { value: 3, suffix: "", label: "Platforms", description: "iOS, Android, and Web from one codebase" },
-];
-
 const testimonials = [
   {
     quote: "Finally an app that doesn't just save numbers — it actually understands my training. Asked it to build me a peaking block and it nailed the percentages based on my actual PRs.",
-    name: "Marcus T.",
+    author: "Marcus T.",
     role: "Powerlifter, 5 years",
-    accent: "#FF6B35",
+    initials: "M",
   },
   {
     quote: "The AI coach caught that I was under-recovering before I did. It noticed my volume had spiked 40% over three weeks and suggested a deload. That's the kind of insight a real coach gives you.",
-    name: "Sarah K.",
+    author: "Sarah K.",
     role: "Competitive CrossFitter",
-    accent: "#4F8EF7",
+    initials: "S",
   },
   {
     quote: "I've tried every tracker. Strong AI is the first one where logging a set actually takes less time than the rest between sets. And the AI is genuinely useful, not just a gimmick.",
-    name: "James R.",
+    author: "James R.",
     role: "Strength & Conditioning Coach",
-    accent: "#FF6B35",
+    initials: "J",
   },
 ];
 
 export default function StatsSection() {
   return (
-    <section className="relative py-20 lg:py-28 overflow-hidden">
-      <div className="absolute inset-0 bg-[#0D0D14]" />
-
-      <div className="container relative z-10">
+    <section className="relative py-20 lg:py-28 bg-white">
+      <div className="container">
         {/* Stats grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-white/[0.05] rounded-2xl overflow-hidden mb-20">
-          {stats.map((stat, i) => (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-20 pb-20 border-b border-gray-200"
+        >
+          {[
+            { label: "Exercise Types", value: 13 },
+            { label: "AI Tool Rounds", value: 6, suffix: "×" },
+            { label: "Data-Grounded", value: 100, suffix: "%" },
+            { label: "Platforms", value: 3 },
+          ].map((stat, i) => (
             <motion.div
               key={stat.label}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="bg-[#0D0D14] px-6 py-8 text-center"
+              className="text-center"
             >
-              <div
-                className="text-4xl md:text-5xl font-extrabold mb-2 text-white"
-                style={{ fontFamily: "'Syne', sans-serif" }}
-              >
-                <AnimatedNumber target={stat.value} suffix={stat.suffix} />
+              <div className="text-3xl md:text-4xl font-bold text-blue-600 mb-2">
+                <AnimatedNumber target={stat.value} />
+                {stat.suffix}
               </div>
-              <div className="text-sm font-semibold text-white/70 mb-1">{stat.label}</div>
-              <div className="text-xs text-white/35 leading-snug">{stat.description}</div>
+              <div className="text-sm text-gray-600 font-medium">{stat.label}</div>
             </motion.div>
           ))}
-        </div>
-
-        {/* Separator */}
-        <div className="separator-glow mb-20" />
+        </motion.div>
 
         {/* Testimonials */}
         <motion.div
@@ -104,51 +99,41 @@ export default function StatsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="mb-8"
         >
-          <h2
-            className="text-3xl sm:text-4xl font-extrabold text-white"
-            style={{ fontFamily: "'Syne', sans-serif" }}
-          >
+          <h2 className="text-3xl md:text-4xl font-bold text-black mb-12 text-center">
             What athletes are saying
           </h2>
-        </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-6">
-          {testimonials.map((t, i) => (
-            <motion.div
-              key={t.name}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: i * 0.12, ease: "easeOut" }}
-              className="glass-card rounded-2xl p-6 flex flex-col gap-4 hover:border-white/10 transition-all duration-300"
-            >
-              {/* Quote mark */}
-              <div
-                className="text-4xl font-serif leading-none"
-                style={{ color: t.accent, opacity: 0.5 }}
+          <div className="grid md:grid-cols-3 gap-6">
+            {testimonials.map((testimonial, i) => (
+              <motion.div
+                key={testimonial.author}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="bg-gray-50 rounded-2xl p-6 border border-gray-200 hover:border-blue-200 transition-colors"
               >
-                "
-              </div>
-              <p className="text-sm text-white/65 leading-relaxed flex-1 -mt-4">
-                {t.quote}
-              </p>
-              <div className="flex items-center gap-3 pt-2 border-t border-white/[0.06]">
-                <div
-                  className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold text-white"
-                  style={{ background: `${t.accent}30`, border: `1px solid ${t.accent}40` }}
-                >
-                  {t.name[0]}
+                <div className="flex items-start gap-3 mb-4">
+                  <div className="text-xl font-bold text-blue-600">"</div>
                 </div>
-                <div>
-                  <div className="text-sm font-semibold text-white">{t.name}</div>
-                  <div className="text-xs text-white/40">{t.role}</div>
+                <p className="text-gray-700 leading-relaxed mb-6 text-sm">
+                  {testimonial.quote}
+                </p>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-sm">
+                    {testimonial.initials}
+                  </div>
+                  <div>
+                    <div className="font-semibold text-black text-sm">{testimonial.author}</div>
+                    <div className="text-xs text-gray-500">{testimonial.role}</div>
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
   );
