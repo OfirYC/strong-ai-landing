@@ -1,66 +1,66 @@
 /*
  * Strong AI — AI Coach Section
- * Light theme with blue accents
+ * Emphasizes personalized, adaptive coaching that learns from user data
  */
 
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { Brain, MessageSquare, Database, Zap, ShieldCheck, RefreshCw } from "lucide-react";
+import { Brain, MessageSquare, Database, Zap, TrendingUp, AlertCircle } from "lucide-react";
 
 const capabilities = [
   {
     icon: Database,
-    title: "Grounded in your data",
-    description: "Before responding, the AI queries your actual workout history, PRs, schedule, and profile. It won't hallucinate your squat max — it looked it up.",
+    title: "Knows your complete history",
+    description: "Every workout, every PR, every injury. The AI has full context on you — it doesn't guess, it looks it up.",
     color: "#0066FF",
   },
   {
-    icon: Brain,
-    title: "Full context, always",
-    description: "Your training background, current goals, injuries, and experience level are injected into every conversation automatically.",
+    icon: AlertCircle,
+    title: "Understands your injuries",
+    description: "Your injury history, current pain points, and recovery patterns are injected into every conversation. It coaches around what hurts.",
+    color: "#FF3B30",
+  },
+  {
+    icon: TrendingUp,
+    title: "Identifies your patterns",
+    description: "Over time, it notices what triggers your injuries, what makes you stronger, what works for *you* specifically.",
     color: "#0066FF",
   },
   {
     icon: Zap,
-    title: "Streaming responses",
-    description: "Responses stream in real time, token by token, so it feels like a conversation rather than waiting for a page to load.",
-    color: "#0052CC",
-  },
-  {
-    icon: RefreshCw,
-    title: "Up to 6 tool-calling rounds",
-    description: "The AI runs a tool-calling loop — exercise lookup, history aggregation, PR queries, schedule inspection — before crafting its final response.",
+    title: "Adapts to your life",
+    description: "Your goals change. Your schedule changes. Your injuries change. The AI adapts its coaching in real time.",
     color: "#0052CC",
   },
   {
     icon: MessageSquare,
-    title: "Saved conversations",
-    description: "Conversations are saved, named automatically, and always there to refer back to. Your coaching history, preserved.",
+    title: "Conversational coaching",
+    description: "Ask anything about your training. The AI responds with facts grounded in your actual data, not generic advice.",
     color: "#0066FF",
   },
   {
-    icon: ShieldCheck,
-    title: "Adapts as you grow",
-    description: "Update your profile any time — new goals, recovered injuries, changed training phase — and the coach adapts immediately.",
-    color: "#0052CC",
+    icon: Brain,
+    title: "Learns what works for you",
+    description: "Every interaction teaches the AI more about you. Over weeks and months, it becomes your personal coach.",
+    color: "#9945FF",
   },
 ];
 
 const chatExamples = [
   {
-    question: "What's been my average squat volume this month?",
-    answer: "Looking at your last 18 sessions in May... Your average squat volume is 14,280kg per session — up 12% from April. You've been hitting 4 working sets at ~90% of your 1RM consistently.",
-    tools: ["history_aggregation", "exercise_lookup"],
+    question: "My knee has been bothering me. What should I change?",
+    answer: "Looking at your history: you've had knee issues after high-volume leg days with minimal recovery. I'd suggest reducing volume by 20% this week, adding an extra rest day, and swapping deep squats for leg press to reduce knee stress. Your sleep has been 6 hours — that's likely a factor too.",
+    tools: ["history", "injury_data", "recovery_metrics"],
   },
   {
-    question: "Am I hitting chest enough?",
-    answer: "Based on your last 3 weeks: you've trained chest 2× per week with 14–16 sets total. That's solid for hypertrophy. Your push days are well-structured, but your incline work has dropped off — only 2 sessions in the last 4 weeks.",
-    tools: ["history_aggregation", "schedule_inspection"],
+    question: "Am I ready to increase my bench press training?",
+    answer: "Your bench has stalled for 3 weeks at 140kg. Your sleep is good (7.5 hrs avg), but your HRV is low — suggesting under-recovery. I'd recommend a deload week first, then increase volume gradually. Your nutrition looks solid, so recovery is the limiting factor here.",
+    tools: ["pr_tracking", "sleep_data", "hrv_data"],
   },
   {
-    question: "My left shoulder has been bugging me. What should I swap out?",
-    answer: "Given the shoulder issue you mentioned, I'd swap flat barbell bench for dumbbell floor press or landmine press — both reduce shoulder impingement. For overhead work, replace strict press with a neutral-grip landmine variant.",
-    tools: ["profile_reading", "exercise_lookup"],
+    question: "What's been my biggest strength gain?",
+    answer: "Your squat is up 15kg in 8 weeks — that's solid. The pattern: you've been consistent with 3 leg days per week, your sleep improved from 6.5 to 7.5 hours, and you added protein tracking. The consistency + recovery combo is working.",
+    tools: ["strength_trends", "sleep_tracking", "nutrition_data"],
   },
 ];
 
@@ -68,7 +68,7 @@ function ToolCallBadge({ tool }: { tool: string }) {
   return (
     <span className="inline-flex items-center gap-1 text-[10px] font-mono text-blue-600 bg-blue-100 border border-blue-200 px-2 py-0.5 rounded">
       <Database className="w-2.5 h-2.5" />
-      {tool}()
+      {tool}
     </span>
   );
 }
@@ -117,10 +117,10 @@ function ChatDemo() {
           <Brain className="w-4 h-4 text-white" />
         </div>
         <div>
-          <div className="text-sm font-bold text-black">AI Coach</div>
+          <div className="text-sm font-bold text-black">Your AI Coach</div>
           <div className="text-xs text-blue-600 flex items-center gap-1.5">
             <span className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse" />
-            Online · Accessing your data
+            Online · Analyzing your data
           </div>
         </div>
       </div>
@@ -214,15 +214,13 @@ export default function AICoachSection() {
           className="mb-16 lg:mb-20"
         >
           <span className="text-xs font-semibold tracking-widest uppercase text-blue-600 mb-3 block">
-            The AI Coach
+            Personalized Coaching
           </span>
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-black leading-tight max-w-2xl">
-            A coach with{" "}
-            <span className="text-blue-gradient">full context</span>{" "}
-            on your training.
+            A coach that knows you.
           </h2>
-          <p className="mt-5 text-lg text-gray-600 max-w-xl leading-relaxed">
-            Not a generic chatbot. Before it responds to anything, it builds a complete picture of you — your recent training history, personal records, scheduled plan, goals, and any injuries you've mentioned.
+          <p className="mt-6 text-lg text-gray-600 leading-relaxed max-w-xl">
+            Not a generic chatbot. Your AI coach has full access to your training history, recovery data, injury patterns, and goals. Every recommendation is grounded in *your* data.
           </p>
         </motion.div>
 

@@ -1,6 +1,6 @@
 /*
  * Strong AI — Hero Section
- * Light theme with blue accents, clean and modern
+ * Emphasizes data-driven injury prevention and personalized coaching
  */
 
 import { motion } from "framer-motion";
@@ -42,7 +42,7 @@ export default function HeroSection() {
             <motion.div variants={itemVariants} className="mb-6">
               <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide uppercase bg-blue-100 text-blue-700 border border-blue-200">
                 <Sparkles className="w-3 h-3" />
-                AI-Powered Training Partner
+                AI That Learns Your Body
               </span>
             </motion.div>
 
@@ -51,9 +51,9 @@ export default function HeroSection() {
               variants={itemVariants}
               className="text-5xl sm:text-6xl lg:text-7xl font-black leading-[0.95] tracking-tight text-black mb-6"
             >
-              Train smarter.
+              Stop getting injured.
               <br />
-              <span className="text-blue-gradient">Not just harder.</span>
+              <span className="text-blue-gradient">Start optimizing.</span>
             </motion.h1>
 
             {/* Subheadline */}
@@ -61,7 +61,7 @@ export default function HeroSection() {
               variants={itemVariants}
               className="text-lg sm:text-xl text-gray-600 max-w-xl leading-relaxed mb-10 font-medium"
             >
-              Most workout apps are glorified spreadsheets. Strong AI combines a fast, frictionless tracker with an AI coach that has full context on your training — your history, your PRs, your injuries, your goals.
+              Most trainers can't see patterns. Strong AI does. Every workout, every recovery metric, every check-in gets analyzed to identify what triggers your injuries and what makes you stronger. Your personal data becomes your competitive advantage.
             </motion.p>
 
             {/* CTAs */}
@@ -77,22 +77,22 @@ export default function HeroSection() {
                 size="lg"
                 variant="outline"
                 className="border-gray-300 text-black hover:bg-gray-50 text-base px-8 h-14"
-                onClick={() => document.getElementById("tracker")?.scrollIntoView({ behavior: "smooth" })}
+                onClick={() => document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" })}
               >
                 See How It Works
               </Button>
             </motion.div>
 
-            {/* Stats row */}
+            {/* Key benefits row */}
             <motion.div
               variants={itemVariants}
               className="flex flex-wrap gap-8 mt-14 pt-10 border-t border-gray-200"
             >
               {[
-                { value: "13", label: "Exercise Types" },
-                { value: "6×", label: "AI Tool Rounds" },
-                { value: "Real-time", label: "Cross-device Sync" },
-                { value: "iOS · Android · Web", label: "Platforms" },
+                { value: "Daily", label: "AI Check-ins" },
+                { value: "Real-time", label: "Injury Detection" },
+                { value: "Garmin + Nutrition", label: "Full Context" },
+                { value: "100%", label: "Personalized" },
               ].map((stat) => (
                 <div key={stat.label}>
                   <div className="text-2xl font-bold text-black">

@@ -5,11 +5,11 @@
 
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
-import StatsSection from "@/components/StatsSection";
+import InjuryPreventionSection from "@/components/InjuryPreventionSection";
+import HolisticHealthSection from "@/components/HolisticHealthSection";
 import ComparisonSection from "@/components/ComparisonSection";
 import TrackerSection from "@/components/TrackerSection";
 import AICoachSection from "@/components/AICoachSection";
-import ProfileSection from "@/components/ProfileSection";
 import HowItWorksSection from "@/components/HowItWorksSection";
 import TechSection from "@/components/TechSection";
 import { CTASection, Footer } from "@/components/CTASection";
@@ -20,11 +20,11 @@ export default function Home() {
       <Navbar />
       <main className="flex-1">
         <HeroSection />
-        <StatsSection />
+        <InjuryPreventionSection />
+        <HolisticHealthSection />
         <ComparisonSection />
         <TrackerSection />
         <AICoachSection />
-        <ProfileSection />
         <HowItWorksSection />
         <TechSection />
         <CTASection />

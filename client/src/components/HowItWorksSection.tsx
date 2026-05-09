@@ -1,6 +1,6 @@
 /*
  * Strong AI — How It Works Section
- * Light theme with blue accents
+ * Outcome-focused: How the system learns and adapts
  */
 
 import { motion } from "framer-motion";
@@ -10,33 +10,33 @@ const steps = [
   {
     number: "01",
     icon: UserCircle,
-    title: "Set up your profile",
+    title: "You set up your profile",
     description:
-      "Tell Strong AI about your training background, current goals, any injuries or limitations, and how long you've been lifting. This isn't a form that disappears — the AI reads it every time you chat. A secondary AI pass extracts structured insights: training phase, injury flags, experience level, strengths.",
+      "Tell Strong AI about your training history, current goals, any injuries, and what you want to achieve. This becomes the foundation for all coaching.",
     color: "#0066FF",
   },
   {
     number: "02",
     icon: Dumbbell,
-    title: "Log your workouts",
+    title: "You log your workouts",
     description:
-      "Pick an exercise, see your last session's numbers as a reference, and log sets inline. Weight and reps update with a tap. The timer runs in the background. When you're done, finish the workout and it's saved. Personal records are detected automatically.",
+      "Fast, frictionless logging. Every set, every PR, every workout gets saved with full context. The data flows in automatically from Garmin and nutrition tracking too.",
     color: "#0066FF",
   },
   {
     number: "03",
     icon: Brain,
-    title: "Chat with your coach",
+    title: "AI learns your patterns",
     description:
-      "Open the coach and ask anything about your training. Under the hood, it runs a tool-calling loop — querying your real database records before responding. Workout history, PRs, templates, schedule, profile. It uses those to ground its answers in facts, then crafts a response.",
+      "Daily check-ins ask about soreness, pain, and how you're feeling. Over weeks and months, the AI identifies what triggers your injuries and what makes you stronger.",
     color: "#0052CC",
   },
   {
     number: "04",
     icon: TrendingUp,
-    title: "Track your progress",
+    title: "You get smarter coaching",
     description:
-      "Your full workout history is always there — scroll back, filter by exercise, see how your numbers have moved over time. Strong AI keeps your data in sync across all devices over WebSocket. Change something on your phone and it appears on your tablet instantly.",
+      "The AI adapts. It warns you before injury patterns repeat. It suggests progressions based on what's worked for you. It becomes your personal coach.",
     color: "#0052CC",
   },
 ];
@@ -54,12 +54,14 @@ export default function HowItWorksSection() {
           className="text-center mb-16 lg:mb-20"
         >
           <span className="text-xs font-semibold tracking-widest uppercase text-blue-600 mb-3 block">
-            How It Works
+            The Flywheel
           </span>
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-black leading-tight">
-            From first rep to{" "}
-            <span className="text-blue-gradient">peak performance</span>
+            How Strong AI gets smarter
           </h2>
+          <p className="mt-6 text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto">
+            Every workout, every recovery metric, every check-in feeds the system. The more data you give it, the smarter it becomes.
+          </p>
         </motion.div>
 
         {/* Steps */}
@@ -111,6 +113,19 @@ export default function HowItWorksSection() {
             ))}
           </div>
         </div>
+
+        {/* Bottom insight */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="mt-16 text-center"
+        >
+          <p className="text-gray-600 text-base leading-relaxed max-w-2xl mx-auto">
+            This is the flywheel: more data → smarter AI → better coaching → better results → more motivation to log → more data. The longer you use Strong AI, the better it gets at keeping you healthy and performing at your best.
+          </p>
+        </motion.div>
       </div>
     </section>
   );

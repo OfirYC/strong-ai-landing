@@ -1,48 +1,36 @@
 /*
  * Strong AI — Tracker Section
- * Light theme with blue accents
+ * Emphasizes frictionless logging as the foundation for AI coaching
  */
 
 import { motion } from "framer-motion";
-import { Timer, Trophy, Repeat2, Calendar, BarChart3, Dumbbell } from "lucide-react";
+import { Zap, Clock, TrendingUp, Smartphone } from "lucide-react";
 
 const WORKOUT_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663643511140/mYfssEJUacXwGC44k6oMNk/feature-workout-eHydvKwRwXeVLxrF2eht7Z.webp";
 
 const features = [
   {
-    icon: Timer,
-    title: "Zero-friction logging",
-    description: "Pick an exercise, see your last session's numbers, log sets inline. The timer runs in the background. Less time logging, more time lifting.",
+    icon: Clock,
+    title: "Logging takes seconds",
+    description: "The faster you log, the more consistently you track. Strong AI is built for speed — pick exercise, enter weight/reps, done. No friction.",
     color: "#0066FF",
   },
   {
-    icon: Trophy,
-    title: "Automatic PR detection",
-    description: "Hit a new 1RM or rep PR and the app flags it instantly — no manual tracking, no thinking required.",
+    icon: Zap,
+    title: "Automatic insights",
+    description: "PRs are flagged instantly. Your workout gets timestamped with context (how you felt, soreness, sleep). All the data the AI needs to learn.",
     color: "#0066FF",
   },
   {
-    icon: Dumbbell,
-    title: "13 exercise types",
-    description: "Barbell, machine, bodyweight, cardio, mobility — only the fields that make sense for each type. No irrelevant inputs cluttering your screen.",
-    color: "#0066FF",
-  },
-  {
-    icon: Repeat2,
-    title: "Templates & programs",
-    description: "Save any workout as a template. Templates remember default sets so you're never starting from scratch.",
+    icon: Smartphone,
+    title: "Works everywhere",
+    description: "iOS, Android, Web. Start on your phone, edit on your tablet, review on your desktop. Your data syncs instantly across all devices.",
     color: "#0052CC",
   },
   {
-    icon: Calendar,
-    title: "Scheduled workouts",
-    description: "Set a recurring bench day on Tuesdays and the app will remind you. Your program, on autopilot.",
-    color: "#0052CC",
-  },
-  {
-    icon: BarChart3,
-    title: "Full history & trends",
-    description: "Your complete workout history, always accessible. Filter by exercise and see exactly how your numbers have moved over time.",
+    icon: TrendingUp,
+    title: "Your complete history",
+    description: "Every workout is saved with full context. Filter by exercise, see trends over months, identify patterns only the AI can spot.",
     color: "#0052CC",
   },
 ];
@@ -73,7 +61,7 @@ function WorkoutMockup() {
           <div className="text-base font-bold text-black">Push Day A</div>
         </div>
         <div className="flex items-center gap-1.5 bg-blue-100 text-blue-700 text-xs font-semibold px-2.5 py-1 rounded-full border border-blue-200">
-          <Timer className="w-3 h-3" />
+          <Clock className="w-3 h-3" />
           42:17
         </div>
       </div>
@@ -147,12 +135,16 @@ export default function TrackerSection() {
           className="mb-16 lg:mb-20"
         >
           <span className="text-xs font-semibold tracking-widest uppercase text-blue-600 mb-3 block">
-            The Tracker
+            The Foundation
           </span>
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-black leading-tight max-w-2xl">
-            Logging a set should take{" "}
-            <span className="text-blue-gradient">less time than resting.</span>
+            Fast logging.
+            <br />
+            <span className="text-blue-gradient">Better data.</span>
           </h2>
+          <p className="mt-6 text-lg text-gray-600 leading-relaxed max-w-xl">
+            The AI is only as good as the data. That's why Strong AI's tracker is obsessively fast. Every set logged, every workout completed, every recovery metric captured — it all feeds the intelligence.
+          </p>
         </motion.div>
 
         {/* Content grid */}
@@ -195,15 +187,10 @@ export default function TrackerSection() {
             <div className="relative rounded-2xl overflow-hidden">
               <img
                 src={WORKOUT_IMG}
-                alt="Athlete gripping barbell with chalk dust"
+                alt="Athlete gripping barbell"
                 className="w-full object-cover aspect-[4/3]"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-              {/* Overlay badge */}
-              <div className="absolute bottom-4 left-4 flex items-center gap-2 bg-blue-600 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
-                <Trophy className="w-3.5 h-3.5" />
-                New PR Detected!
-              </div>
             </div>
 
             {/* Workout mockup */}
