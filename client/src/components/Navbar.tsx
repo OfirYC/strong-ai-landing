@@ -36,9 +36,11 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <a href="#" className="flex items-center gap-2.5 group">
-            <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow">
-              <Zap className="w-4 h-4 text-white fill-white" />
-            </div>
+            <img
+              src="/manus-storage/output_936045-removebg_3799a138.png"
+              alt="Strong AI"
+              className="w-8 h-8 object-contain group-hover:opacity-80 transition-opacity"
+            />
             <span className="text-lg font-bold tracking-tight text-black">
               Strong<span className="text-blue-600">AI</span>
             </span>
