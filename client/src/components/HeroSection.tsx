@@ -23,13 +23,32 @@ const itemVariants = {
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden pt-16 bg-white">
-      {/* Background image with light overlay */}
+    <section className="relative min-h-screen flex items-center overflow-hidden pt-16 bg-gradient-to-b from-blue-50 via-white to-white">
+      {/* Animated background gradient orbs */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div
+          className="absolute w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20"
+          animate={{
+            x: [0, 100, 0],
+            y: [0, 50, 0],
+          }}
+          transition={{ duration: 8, repeat: Infinity }}
+          style={{ top: "-10%", left: "-10%" }}
+        />
+        <motion.div
+          className="absolute w-96 h-96 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-20"
+          animate={{
+            x: [0, -100, 0],
+            y: [0, -50, 0],
+          }}
+          transition={{ duration: 10, repeat: Infinity }}
+          style={{ bottom: "-10%", right: "-10%" }}
+        />
+      </div>
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-10"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-5"
         style={{ backgroundImage: `url(${HERO_BG})` }}
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-blue-50/50 via-white to-white" />
 
       <div className="container relative z-10 py-20">
         <div className="max-w-3xl">
@@ -49,11 +68,19 @@ export default function HeroSection() {
             {/* Headline */}
             <motion.h1
               variants={itemVariants}
-              className="text-5xl sm:text-6xl lg:text-7xl font-black leading-[0.95] tracking-tight text-black mb-6"
+              className="text-5xl sm:text-6xl lg:text-7xl font-black leading-[0.95] tracking-tight mb-6"
             >
-              Stop getting injured.
+              <span className="text-black">Stop getting injured.</span>
               <br />
-              <span className="text-blue-gradient">Start optimizing.</span>
+              <motion.span
+                className="bg-gradient-to-r from-blue-600 via-blue-500 to-blue-700 bg-clip-text text-transparent"
+                animate={{
+                  backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                }}
+                transition={{ duration: 6, repeat: Infinity }}
+              >
+                Start optimizing.
+              </motion.span>
             </motion.h1>
 
             {/* Subheadline */}
@@ -66,21 +93,25 @@ export default function HeroSection() {
 
             {/* CTAs */}
             <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4">
-              <Button
-                size="lg"
-                className="bg-blue-600 hover:bg-blue-700 text-white font-semibold text-base px-8 h-14 shadow-lg hover:shadow-xl transition-all duration-200 group"
-              >
-                Get Early Access
-                <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-gray-300 text-black hover:bg-gray-50 text-base px-8 h-14"
-                onClick={() => document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" })}
-              >
-                See How It Works
-              </Button>
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Button
+                  size="lg"
+                  className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold text-base px-8 h-14 shadow-xl hover:shadow-2xl transition-all duration-300"
+                >
+                  Get Early Access
+                  <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </motion.div>
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-2 border-gray-300 hover:border-blue-600 hover:bg-blue-50 text-black text-base px-8 h-14 transition-all duration-300"
+                  onClick={() => document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" })}
+                >
+                  See How It Works
+                </Button>
+              </motion.div>
             </motion.div>
 
             {/* Key benefits row */}
@@ -93,13 +124,17 @@ export default function HeroSection() {
                 { value: "Real-time", label: "Injury Detection" },
                 { value: "Garmin + Nutrition", label: "Full Context" },
                 { value: "100%", label: "Personalized" },
-              ].map((stat) => (
-                <div key={stat.label}>
+              ].map((stat, i) => (
+                <motion.div
+                  key={stat.label}
+                  whileHover={{ y: -5 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                >
                   <div className="text-2xl font-bold text-black">
                     {stat.value}
                   </div>
                   <div className="text-xs text-gray-500 mt-0.5 tracking-wide font-medium">{stat.label}</div>
-                </div>
+                </motion.div>
               ))}
             </motion.div>
           </motion.div>

@@ -1,11 +1,12 @@
 /*
- * Strong AI — Navbar Component
- * Light theme with blue accent, clean and minimal
+ * Strong AI — Premium Navbar Component
+ * Sophisticated animations, depth effects, refined interactions
  */
 
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Zap } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -26,85 +27,111 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm"
+          ? "bg-white/80 backdrop-blur-xl border-b border-blue-100/30 shadow-lg"
           : "bg-white"
       }`}
     >
       <div className="container">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2.5 group">
-            <img
+          <motion.a
+            href="#"
+            className="flex items-center gap-2.5 group"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <motion.img
               src="/manus-storage/output_936045-removebg_3799a138.png"
               alt="Strong AI"
-              className="w-8 h-8 object-contain group-hover:opacity-80 transition-opacity"
+              className="w-8 h-8 object-contain"
+              whileHover={{ rotate: 5 }}
+              transition={{ type: "spring", stiffness: 400, damping: 10 }}
             />
             <span className="text-lg font-bold tracking-tight text-black">
               Strong<span className="text-blue-600">AI</span>
             </span>
-          </a>
+          </motion.a>
 
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <a
+            {navLinks.map((link, i) => (
+              <motion.a
                 key={link.href}
                 href={link.href}
                 className="text-sm font-medium text-gray-600 hover:text-black transition-colors duration-200 relative group"
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.05 }}
+                whileHover={{ color: "#000" }}
               >
                 {link.label}
-                <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-blue-600 group-hover:w-full transition-all duration-300" />
-              </a>
+                <motion.span
+                  className="absolute -bottom-0.5 left-0 h-px bg-gradient-to-r from-blue-600 to-blue-400"
+                  initial={{ width: 0 }}
+                  whileHover={{ width: "100%" }}
+                  transition={{ duration: 0.3 }}
+                />
+              </motion.a>
             ))}
           </nav>
 
           {/* CTA */}
           <div className="hidden md:flex items-center gap-3">
-            <Button
-              variant="ghost"
-              size="sm"
-              className="text-gray-600 hover:text-black hover:bg-gray-100"
-            >
-              Sign In
-            </Button>
-            <Button
-              size="sm"
-              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-md hover:shadow-lg transition-all duration-200"
-            >
-              Get Early Access
-            </Button>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Button
+                variant="ghost"
+                size="sm"
+                className="text-gray-600 hover:text-black hover:bg-gray-100"
+              >
+                Sign In
+              </Button>
+            </motion.div>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Button
+                size="sm"
+                className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-200"
+              >
+                Get Early Access
+              </Button>
+            </motion.div>
           </div>
 
           {/* Mobile hamburger */}
-          <button
+          <motion.button
             className="md:hidden flex flex-col gap-1.5 p-2"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle menu"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
           >
-            <span className={`w-5 h-0.5 bg-black transition-all duration-300 ${mobileOpen ? "rotate-45 translate-y-2" : ""}`} />
-            <span className={`w-5 h-0.5 bg-black transition-all duration-300 ${mobileOpen ? "opacity-0" : ""}`} />
-            <span className={`w-5 h-0.5 bg-black transition-all duration-300 ${mobileOpen ? "-rotate-45 -translate-y-2" : ""}`} />
-          </button>
+            {mobileOpen ? (
+              <X className="w-5 h-5 text-black" />
+            ) : (
+              <Menu className="w-5 h-5 text-black" />
+            )}
+          </motion.button>
         </div>
 
         {/* Mobile menu */}
-        <div
-          className={`md:hidden overflow-hidden transition-all duration-300 border-t border-gray-200 ${
-            mobileOpen ? "max-h-72 pb-4" : "max-h-0"
-          }`}
+        <motion.div
+          className="md:hidden overflow-hidden border-t border-gray-200"
+          initial={{ height: 0 }}
+          animate={{ height: mobileOpen ? "auto" : 0 }}
+          transition={{ duration: 0.3 }}
         >
-          <nav className="flex flex-col gap-1 pt-2">
+          <nav className="flex flex-col gap-1 pt-2 pb-4">
             {navLinks.map((link) => (
-              <a
+              <motion.a
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
                 className="px-2 py-2.5 text-sm font-medium text-gray-600 hover:text-black hover:bg-gray-100 rounded-lg transition-colors"
+                whileHover={{ x: 4 }}
               >
                 {link.label}
-              </a>
+              </motion.a>
             ))}
             <div className="flex flex-col gap-2 mt-3 pt-3 border-t border-gray-200">
               <Button variant="ghost" size="sm" className="text-gray-600 hover:text-black justify-start">
@@ -112,13 +139,13 @@ export default function Navbar() {
               </Button>
               <Button
                 size="sm"
-                className="bg-blue-600 hover:bg-blue-700 text-white font-semibold"
+                className="bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold"
               >
                 Get Early Access
               </Button>
             </div>
           </nav>
-        </div>
+        </motion.div>
       </div>
     </header>
   );

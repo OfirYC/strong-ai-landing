@@ -47,7 +47,19 @@ function FeatureIcon({ value, isStrongAI }: { value: FeatureValue; isStrongAI?: 
 
 export default function ComparisonSection() {
   return (
-    <section className="relative py-20 lg:py-28 bg-gray-50">
+    <section className="relative py-20 lg:py-28 bg-gradient-to-b from-gray-50 via-white to-gray-50 overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <motion.div
+          className="absolute w-96 h-96 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-10"
+          animate={{
+            x: [0, -50, 0],
+            y: [0, 30, 0],
+          }}
+          transition={{ duration: 12, repeat: Infinity }}
+          style={{ bottom: "-20%", left: "-10%" }}
+        />
+      </div>
       <div className="container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -81,7 +93,7 @@ export default function ComparisonSection() {
           </div>
 
           {/* Table rows */}
-          <div className="bg-white rounded-2xl overflow-hidden divide-y divide-gray-200 border border-gray-200">
+          <div className="bg-white rounded-2xl overflow-hidden divide-y divide-gray-200 border border-gray-200 shadow-sm">
             {comparisons.map((row, i) => (
               <motion.div
                 key={row.feature}
@@ -89,7 +101,8 @@ export default function ComparisonSection() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.04 }}
-                className="grid grid-cols-[1fr_100px_140px] gap-4 px-5 py-3.5 items-center hover:bg-gray-50 transition-colors"
+                whileHover={{ backgroundColor: "rgba(59, 130, 246, 0.03)" }}
+                className="group grid grid-cols-[1fr_100px_140px] gap-4 px-5 py-3.5 items-center transition-all duration-300"
               >
                 <span className="text-sm text-gray-700 font-medium">{row.feature}</span>
                 <div className="flex justify-center">

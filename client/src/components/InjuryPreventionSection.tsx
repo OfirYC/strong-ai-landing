@@ -69,18 +69,30 @@ export default function InjuryPreventionSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1, ease: "easeOut" }}
-                className="bg-white rounded-xl p-6 border border-gray-200 hover:border-blue-300 transition-all duration-300"
+                whileHover={{ y: -8, transition: { duration: 0.3 } }}
+                className="group relative"
               >
-                <div
-                  className="w-10 h-10 rounded-lg flex items-center justify-center mb-4"
-                  style={{ background: `${step.color}15` }}
-                >
-                  <step.icon className="w-5 h-5" style={{ color: step.color }} />
+                <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="relative bg-white rounded-xl p-6 border border-gray-200 group-hover:border-blue-300 transition-all duration-300">
+                  <motion.div
+                    className="w-10 h-10 rounded-lg flex items-center justify-center mb-4"
+                    style={{ background: `${step.color}15` }}
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                  >
+                    <step.icon className="w-5 h-5" style={{ color: step.color }} />
+                  </motion.div>
+                  <h3 className="text-base font-bold text-black mb-2 group-hover:text-blue-600 transition-colors duration-300">
+                    {step.title}
+                  </h3>
+                  <p className="text-sm text-gray-600 leading-relaxed">{step.description}</p>
+                  <motion.div
+                    className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-blue-600 to-blue-400 rounded-full"
+                    initial={{ width: 0 }}
+                    whileHover={{ width: "100%" }}
+                    transition={{ duration: 0.3 }}
+                  />
                 </div>
-                <h3 className="text-base font-bold text-black mb-2">
-                  {step.title}
-                </h3>
-                <p className="text-sm text-gray-600 leading-relaxed">{step.description}</p>
               </motion.div>
             ))}
           </div>
